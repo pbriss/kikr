@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Kikr</title>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+
+	<!-- Icons -->
+	<link rel="stylesheet" href="fonts/font-awesome/font-awesome.css">
+
+	<!-- Css/Less Stylesheets -->
+	<link rel="stylesheet" href="styles/vendors/animate.css">
+	<link rel="stylesheet" href="styles/vendors/bootstrap.min.css">
+	<link rel="stylesheet/less" href="styles/main.less">
+
+	<!-- Match Media polyfill for IE9 -->
+	<!--[if IE 9]><!--> <script src="scripts/ie/matchMedia.js"></script>  <!--<![endif]-->
+
+</head>
+<body ng-app="app"
+	id="app"
+	class="app"
+	ng-controller="AppCtrl"
+	custom-page>
+	<header class="site-head clearfix"
+		id="site-head"
+		ng-controller="HeadCtrl"
+		ng-include=" 'views/header.html' ">
+		<!-- linked header (static) view -->
+	</header>
+
+	<div class="main-container clearfix">
+
+		<div class="content-container" id="content" ng-view>
+			<!-- content using routing -->
+		</div>
+
+	</div>
+
+	<!-- Dev only -->
+	<script src="scripts/dev/less.min.js"></script>
+
+	<!-- Vendors -->
+	<script src="scripts/vendors/jquery.js"></script> <!-- load before angular -->
+	<script src="scripts/vendors/angular.js"></script>
+
+	<!-- Plugins -->
+	<script src="scripts/plugins/angular-route.js"></script>
+	<script src="scripts/plugins/angular-animate.js"></script>
+	<script src="scripts/plugins/angular-sanitize.js"></script>
+	<script src="scripts/plugins/ui-bootstrap-tpls.js"></script>
+
+	<!-- Custom scripts -->
+	<script src="scripts/app.js"></script>
+	<script src="scripts/shared/app.ctrls.js"></script>
+	<script src="scripts/shared/app.directives.js"></script>
+	<script src="scripts/shared/app.services.js"></script>
+
+</body>
+</html>
