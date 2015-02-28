@@ -9,6 +9,7 @@
     "express": "^4.11.2",
     "express-session": "^1.7.6",
     "fs": "0.0.2",
+    "goproh4": "^0.2.0",
     "method-override": "^2.2.0",
     "morgan": "^1.5.1"
   },
