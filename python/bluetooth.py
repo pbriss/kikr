@@ -45,9 +45,8 @@ def main(outfilename, isLocal):
 
     while True: 
         read_val = send(ser, "4")
-        time.sleep(1.5)
+        time.sleep(3.5)
         read_val = send(ser, "a")
-
         read_val = readserial(ser)
         latest_read = read_val        
 
@@ -80,7 +79,7 @@ def main(outfilename, isLocal):
 
         if latest_read != None:
             #with open( outfilename, "a+") as myfile:
-            fout.write("T:" + str(curtime) + ":" + latest_read)
+            fout.write("\nT:" + str(curtime) + ":" + latest_read + "\n")
             fout.flush()
                 #myflle.flush()
 

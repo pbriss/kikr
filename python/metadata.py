@@ -68,6 +68,8 @@ def main(infilename, outfilename):
                     #pdb.set_trace()
                     curtime = int(re.findall('T:(\d+):', latest_read)[0])
 
+                #if curtime == 19:
+                    #pdb.set_trace()
 
                 # now do the parsing and plot the data: 
                 # re.findall('.*\r(.*)\r',latest_read.replace('$','').replace('#',''))
@@ -76,18 +78,46 @@ def main(infilename, outfilename):
                 magn  = re.findall('\-?\d+,\-?\d+,\-?\d+,(\-?\d+),(\-?\d+),(\-?\d+).*\r',latest_read.replace('$','').replace('#',''))
                 gyro  = re.findall('\-?\d+,\-?\d+,\-?\d+,\-?\d+,\-?\d+,\-?\d+,(\-?\d+),(\-?\d+),(\-?\d+).*\r',latest_read.replace('$','').replace('#',''))
         
-                accel_x = re.findall('.*(\-?\d+),\-?\d+,\-?\d+,.*\r',latest_read.replace('$','').replace('#',''))
-                accel_y = re.findall('.*\-?\d+,(\-?\d+),\-?\d+,.*\r',latest_read.replace('$','').replace('#',''))
-                accel_z = re.findall('.*\-?\d+,\-?\d+,(\-?\d+),.*\r',latest_read.replace('$','').replace('#',''))
+                #accel_x = re.findall('.*(\-?\d+),\-?\d+,\-?\d+,.*\r',latest_read.replace('$','').replace('#',''))
+                #accel_y = re.findall('.*\-?\d+,(\-?\d+),\-?\d+,.*\r',latest_read.replace('$','').replace('#',''))
+                #accel_z = re.findall('.*\-?\d+,\-?\d+,(\-?\d+),.*\r',latest_read.replace('$','').replace('#',''))
         
-                magn_x = re.findall('.*\-?\d+,\-?\d+,\-?\d+,(\-?\d+),\-?\d+,\-?\d+.*\r',latest_read.replace('$','').replace('#',''))
-                magn_y = re.findall('.*\-?\d+,\-?\d+,\-?\d+,\-?\d+,(\-?\d+),\-?\d+.*\r',latest_read.replace('$','').replace('#',''))
-                magn_z = re.findall('.*\-?\d+,\-?\d+,\-?\d+,\-?\d+,\-?\d+,(\-?\d+).*\r',latest_read.replace('$','').replace('#',''))
+                #magn_x = re.findall('.*\-?\d+,\-?\d+,\-?\d+,(\-?\d+),\-?\d+,\-?\d+.*\r',latest_read.replace('$','').replace('#',''))
+                #magn_y = re.findall('.*\-?\d+,\-?\d+,\-?\d+,\-?\d+,(\-?\d+),\-?\d+.*\r',latest_read.replace('$','').replace('#',''))
+                #magn_z = re.findall('.*\-?\d+,\-?\d+,\-?\d+,\-?\d+,\-?\d+,(\-?\d+).*\r',latest_read.replace('$','').replace('#',''))
         
-                gyro_x = re.findall('.*\-?\d+,\-?\d+,\-?\d+,(\-?\d+),\-?\d+,\-?\d+.*\r',latest_read.replace('$','').replace('#',''))
-                gyro_y = re.findall('.*\-?\d+,\-?\d+,\-?\d+,\-?\d+,(\-?\d+),\-?\d+.*\r',latest_read.replace('$','').replace('#',''))
-                gyro_z = re.findall('.*\-?\d+,\-?\d+,\-?\d+,\-?\d+,\-?\d+,(\-?\d+).*\r',latest_read.replace('$','').replace('#',''))
+                #gyro_x = re.findall('.*\-?\d+,\-?\d+,\-?\d+,(\-?\d+),\-?\d+,\-?\d+.*\r',latest_read.replace('$','').replace('#',''))
+                #gyro_y = re.findall('.*\-?\d+,\-?\d+,\-?\d+,\-?\d+,(\-?\d+),\-?\d+.*\r',latest_read.replace('$','').replace('#',''))
+                #gyro_z = re.findall('.*\-?\d+,\-?\d+,\-?\d+,\-?\d+,\-?\d+,(\-?\d+).*\r',latest_read.replace('$','').replace('#',''))
 
+                #pdb.set_trace()
+                #accel_x = [accel[0][0]]
+                #accel_y = [accel[0][1]]
+                #accel_z = [accel[0][2]]
+
+                accel_x = getindexcheck(accel,0)
+                accel_y = getindexcheck(accel,1)
+                accel_z = getindexcheck(accel,2)
+
+                magn_x = getindexcheck(magn,0)
+                #magn_x = [magn[0][0]]
+                magn_y = getindexcheck(magn,1)
+                magn_z = getindexcheck(magn,2)
+                #magn_z = [magn[0][2]]
+
+
+                gyro_x = getindexcheck(gyro,0)
+                gyro_y = getindexcheck(gyro,1)
+                gyro_z = getindexcheck(gyro,2)
+                #gyro_x = [gyro[0][0]]
+                #gyro_y = [gyro[0][1]]
+                #gyro_z = [gyro[0][2]]
+
+
+
+                #if int(gyro_z[0]) > 0:
+                #    pdb.set_trace()
+                
                 #pdb.set_trace()                
                 timearr = timearr + [curtime]
 
@@ -142,13 +172,13 @@ def main(infilename, outfilename):
 
 
     maxval = max([max(abs(diff_x)), max(abs(diff_y)), max(abs(diff_z))])
-    factor = 0.4
+    factor = 0.6
 
     maxvalm = max([max(abs(diffm_x)), max(abs(diffm_y)), max(abs(diffm_z))])
-    factor = 0.4
+    factor = 0.6
 
     maxvalg = max([max(abs(diffg_x)), max(abs(diffg_y)), max(abs(diffg_z))])
-    factor = 0.4
+    factor = 0.6
     
 
 
@@ -174,29 +204,38 @@ def main(infilename, outfilename):
     # Subsampling the Z : (subsample max)
     # Remove the sample close to each other: 
     indsg_z_clean = indsg_z[0]
-    for x in indsg_z_clean:
-        #Make sure they are unique: 
-        curv = numpy.nonzero( indsg_z_clean  ==  x )[0] 
-        #pdb.set_trace()
-    
-        if len(curv) > 0:
-            nonuniquearr = numpy.nonzero(abs(indsg_z_clean-x) < 5 ) 
-            for nonunique in nonuniquearr[0]:
-                if nonunique != curv[0]:
-                #curelement_index = numpy.nonzero( indsg_z_clean  ==  nonunique )[0] 
-                    indsg_z_clean = np.delete(indsg_z_clean,nonunique )
-                    print x
 
+    if 0: 
+        for x in indsg_z_clean:
+        #Make sure they are unique: 
+            curv = numpy.nonzero( indsg_z_clean  ==  x )[0] 
+        #pdb.set_trace()
+            
+            if len(curv) > 0:
+                nonuniquearr = numpy.nonzero(abs(indsg_z_clean-x) < 5 ) 
+                for nonunique in nonuniquearr[0]:
+                    if nonunique != curv[0]:
+                #curelement_index = numpy.nonzero( indsg_z_clean  ==  nonunique )[0] 
+                        indsg_z_clean = np.delete(indsg_z_clean,nonunique )
+                        print x
+
+    #indsm_y_clean = subsampleclose(indsm_y, 5)
+    #pdb.set_trace()
+
+    timearr_np = np.array(timearr)
+    timearr_indsm_y_clean = list(set(timearr_np[indsm_y[0]]))
+    #timearr_np[indsm_y[0]].reshape(-1,)
 
 
     #pdb.set_trace()
-    for x in numpy.nditer(indsg_z_clean):
-        print x
+    if 1: 
+        #for x in numpy.nditer(indsm_y_clean):
+        for x in timearr_indsm_y_clean:
+            print x
         # Get index when it happened: 
-        curidx = numpy.nonzero( diffg_z  ==  x )[0] 
-        pdb.set_trace()
-        fout.write("T=" + str(timearr[x]) +  " Jump" + "\n" )
-
+            #pdb.set_trace()
+            fout.write("T=" + str(x) +  " Jump" + "\n" )
+            
     fout.close()
 
 
@@ -247,6 +286,40 @@ def main(infilename, outfilename):
 # end        
 
     pdb.set_trace()
+
+
+def subsampleclose(arr, distance):
+    arr_clean = arr
+    
+    #pdb.set_trace()
+    for x in arr_clean:
+        #Make sure they are unique: 
+        curv = numpy.nonzero( arr_clean  ==  x )[0] 
+        #pdb.set_trace()
+    
+        if len(curv) > 0:
+            nonuniquearr = numpy.nonzero(abs( arr_clean-x) <  distance ) 
+            for nonunique in nonuniquearr[0]:
+                if nonunique != curv[0]:
+                #curelement_index = numpy.nonzero( indsg_z_clean  ==  nonunique )[0] 
+                    arr_clean = np.delete(arr_clean,nonunique )
+                    print x
+
+
+    return arr_clean
+
+
+
+
+def getindexcheck(arr,idx):
+    if len(arr) > 0:
+        if len(arr[0]) > idx:
+            return [arr[0][idx]]
+        else:
+            return []
+    else:
+        return []
+
 
 
 def indices(a, func):
