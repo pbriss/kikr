@@ -1,11 +1,11 @@
 ;(function() {
-"use strict";
+'use strict';
 
-angular.module("app.ctrls", [])
+angular.module('app.ctrls', [])
 
 	// Root Controller
-	.controller("AppCtrl", ["$rootScope", "$scope",  function($rs, $scope) {
-		var mm = window.matchMedia("(max-width: 767px)");
+	.controller('AppCtrl', ['$rootScope', '$scope',  function($rs, $scope) {
+		var mm = window.matchMedia('(max-width: 767px)');
 		$rs.isMobile = mm.matches ? true: false;
 
 		$rs.safeApply = function(fn) {
@@ -30,32 +30,59 @@ angular.module("app.ctrls", [])
 	}])
 
 	// Head Controller
-	.controller("HeadCtrl", ["$scope", function($scope){
+	.controller('HeadCtrl', ['$scope', function($scope){
 		$scope.toggleSidebar = function() {
 			$scope.sidebarOpen = $scope.sidebarOpen ? false : true;
 		};
 	}])
 
+	// Foot Controller
+	.controller('FootCtrl', ['$scope', function($scope){
+	}])
+
 	// Start Controller
-	.controller("StartCtrl", ["$scope", "$http", function($scope, $http){
-		$scope.isActive = false;
+	.controller('StartCtrl', ['$scope', '$http', '$location', '$timeout', function($scope, $http, $location, $timeout){
+
+		$scope.isInitiated = false;
+		$scope.isRunning = false;
+		$scope.isProcessing = false;
+
 		$scope.startRecord = function() {
 
-			if (!$scope.isActive) {
-				$http.get('api/btstart').success(function (json) {
+			if (true) {
 
-				});
-			}
-			else {
-				$http.get('api/btstop').success(function (json) {
-					$http.get('api/processing').success(function (json) {
+				if (!$scope.isInitiated && !$scope.isRunning) {
+					$scope.isInitiated = true;
+					$http.get('api/btstart').success(function (json) {
+						$scope.isInitiated = false;
+						$scope.isRunning = true;
 
 					});
-				});
-			}
+				}
+				else {
+					$http.get('api/btstop').success(function (json) {
+						$scope.isRunning = false;
+						$scope.isProcessing = true;
+						$http.get('api/processing').success(function (json) {
+							//$location.path('/events');
+						});
+					});
 
-			$scope.isActive = $scope.isActive ?  false : true;
+					//
+					//$scope.isDone = true;
+					//
+					//$timeout(function(){
+					//	$location.path('/events');
+					//}, 2000);
+
+				}
+			}
 		};
+	}])
+
+	// Events Controller
+	.controller('EventsCtrl', ['$scope', '$http', function($scope, $http){
+
 	}])
 
 }());

@@ -20,7 +20,7 @@
 	.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
 
 		var routes = [
-			"start"
+			"start", "events"
 		];
 
 		function setRoutes(route) {
