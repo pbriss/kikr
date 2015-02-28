@@ -48,7 +48,9 @@ angular.module("app.ctrls", [])
 			}
 			else {
 				$http.get('api/btstop').success(function (json) {
+					$http.get('api/processing').success(function (json) {
 
+					});
 				});
 			}
 

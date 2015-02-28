@@ -12,7 +12,8 @@
     "goproh4": "^0.2.0",
     "method-override": "^2.2.0",
     "morgan": "^1.5.1",
-    "python-shell": "0.0.3"
+    "python-shell": "0.0.3",
+    "sleep": "^2.0.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
