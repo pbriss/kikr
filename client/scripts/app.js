@@ -9,20 +9,12 @@
 
 		/* 3rd Party Modules */
 		"ui.bootstrap",
-		"angular-loading-bar",
 
 		/* Custom Modules */
 		"app.ctrls",
-		"app.directives",
-		"app.services"
+		"app.directives"
 
 	])
-
-	// disable spinner in loading-bar
-	.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-	    cfpLoadingBarProvider.includeSpinner = false;
-	    cfpLoadingBarProvider.latencyThreshold = 50;
-	}])
 
 	// route provider
 	.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
