@@ -79,6 +79,7 @@ module.exports = function(grunt) {
                     'angular-animate.js': 'angular-animate/angular-animate.js',
                     'angular-sanitize.js': 'angular-sanitize/angular-sanitize.js',
                     'ui-bootstrap-tpls.js': 'angular-bootstrap/ui-bootstrap-tpls.js',
+					'video.js': 'video.js/dist/video-js/video.js'
                     //NOTE: bower_component styles are not copied since we have custom less implementations of them with variables
                     //which means we need to include them by hand in styles/plugins
                 }
