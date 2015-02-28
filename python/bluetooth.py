@@ -149,7 +149,7 @@ if __name__ == "__main__":
 
     print 'Number of arguments:', len(sys.argv), 'arguments.'
     print 'Argument List:', str(sys.argv)
-
+    val = ''
 
     if (len(sys.argv) > 2):
         val = sys.argv[2]

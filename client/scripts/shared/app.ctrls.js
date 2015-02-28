@@ -38,6 +38,22 @@ angular.module("app.ctrls", [])
 
 	// Start Controller
 	.controller("StartCtrl", ["$scope", "$http", function($scope, $http){
+		$scope.isActive = false;
+		$scope.startRecord = function() {
+
+			if (!$scope.isActive) {
+				$http.get('api/btstart').success(function (json) {
+
+				});
+			}
+			else {
+				$http.get('api/btstop').success(function (json) {
+
+				});
+			}
+
+			$scope.isActive = $scope.isActive ?  false : true;
+		};
 	}])
 
 }());
