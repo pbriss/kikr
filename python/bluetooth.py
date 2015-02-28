@@ -5,6 +5,7 @@ import math
 import pdb
 import sys
 import re
+import os
 from pylab import *
 
 
@@ -12,6 +13,7 @@ from pylab import *
 
 import datetime
 import time
+import gopro
 
 #from time import time, sleep
 #import time, sleep
@@ -43,6 +45,10 @@ def main(outfilename, isLocal):
     print "serialopened"
     now = datetime.datetime.now()
     beginning_of_test = datetime.datetime.now()
+    #gopro.main()
+    os.system("python gopro.py &")
+
+
 
     while True: 
         read_val = send(ser, "4")
