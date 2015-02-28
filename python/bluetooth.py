@@ -20,8 +20,6 @@ import time
 def main(outfilename, isLocal):
 
 
-    now = datetime.datetime.now()
-    beginning_of_test = datetime.datetime.now()
     #beginning_of_test = datetime.datetime.combine(now.date(), datetime.time(0))  
 
 
@@ -42,6 +40,9 @@ def main(outfilename, isLocal):
     #pdb.set_trace()    
     fout = open(outfilename, 'a+')
 
+    print "serialopened"
+    now = datetime.datetime.now()
+    beginning_of_test = datetime.datetime.now()
 
     while True: 
         read_val = send(ser, "4")

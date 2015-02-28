@@ -14,7 +14,6 @@ def main(isLocal):
     StartNegOffset = 3  # How many seconds before the jump
     ClipLength = 10  # in seconds 
 
-    
     JumpLocation = int(re.findall('T=(\d+)', metaline)[0])
     startclip = JumpLocation - StartNegOffset
     endclip = startclip + ClipLength
@@ -44,8 +43,6 @@ def makevideoclip(startclip, endclip, fileout):
 
 if __name__ == "__main__":
 
-
-
     val = ''
     if (len(sys.argv) > 1):
         val = sys.argv[1]
@@ -54,6 +51,4 @@ if __name__ == "__main__":
     if val == 'local':
         isLocal =	True
         
-    
-
     main(isLocal)
