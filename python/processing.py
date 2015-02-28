@@ -6,33 +6,40 @@ import sys
 from moviepy.editor import *
 
 
-def main(isLocal):
-    #get the metadata.txt file : 
-    f = open('metadata.txt', 'r')
+def main(islocal):
+    #get the metadata.txt file :
+    if (islocal):
+        f = open('metadata.txt', 'r')
+    else:
+        f = open('python/metadata.txt', 'r')
     metaline = f.readline()
 
     StartNegOffset = 3  # How many seconds before the jump
-    ClipLength = 10  # in seconds 
+    ClipLength = 10  # in seconds
 
-    JumpLocation = int(re.findall('T=(\d+)', metaline)[0])
+    #JumpLocation = int(re.findall('T=(\d+)', metaline)[0])
+    JumpLocation = int(re.findall('(\d+)', metaline)[0])
     startclip = JumpLocation - StartNegOffset
     endclip = startclip + ClipLength
 
 
-    if (isLocal):
-        makevideoclip( startclip , endclip , 'videos/segments/jump1')
+    if islocal:
+        makevideoclip(startclip, endclip, 'videos/segments/jump1', islocal)
     else:
-        makevideoclip( startclip , endclip , 'python/videos/segments/jump1')        
+        makevideoclip(startclip, endclip, 'python/videos/segments/jump1', islocal)
 
 
 
-def makevideoclip(startclip, endclip, fileout):
+def makevideoclip(startclip, endclip, fileout, islocalin):
 
     # Grab original clip
-    video = VideoFileClip('latest.mp4').subclip(startclip, endclip)
+    if islocalin:
+        video = VideoFileClip('videos/src/test.mp4').subclip(startclip, endclip)
+    else:
+        video = VideoFileClip('python/videos/src/test.mp4').subclip(startclip, endclip)
 
     # Create thumbnail
-    video.save_frame( fileout + '.png')
+    video.save_frame(fileout + '.png')
     
     result = CompositeVideoClip([video])
     
@@ -44,11 +51,11 @@ def makevideoclip(startclip, endclip, fileout):
 if __name__ == "__main__":
 
     val = ''
-    if (len(sys.argv) > 1):
+    if len(sys.argv) > 1:
         val = sys.argv[1]
 
-    isLocal = False
+    islocal = False
     if val == 'local':
-        isLocal =	True
+        islocal =	True
         
-    main(isLocal)
+    main(islocal)

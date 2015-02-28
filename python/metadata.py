@@ -17,7 +17,7 @@ from time import time, sleep
 def main(infilename, outfilename):
 
     i = 'a'
-    makeplot = True
+    makeplot = False
 
     if makeplot:
         ion()
@@ -234,8 +234,9 @@ def main(infilename, outfilename):
             print x
         # Get index when it happened: 
             #pdb.set_trace()
-            fout.write("T=" + str(x) +  " Jump" + "\n" )
-            
+            #fout.write("T=" + str(x) +  " Jump" + "\n" )
+            fout.write(str(x) + "\n" )
+
     fout.close()
 
 
@@ -284,9 +285,11 @@ def main(infilename, outfilename):
         
 
 # end        
+    if makeplot:
+        pdb.set_trace()
 
-    pdb.set_trace()
 
+    print "Done"
 
 def subsampleclose(arr, distance):
     arr_clean = arr

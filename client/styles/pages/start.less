@@ -91,7 +91,7 @@
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
 
-                .animation(rotating);
+                .animation(rotating3d);
                 .animation-timing-function(linear);
                 .animation-duration(1.5s);
                 .animation-iteration-count(infinite);
@@ -131,10 +131,18 @@
 
 @-webkit-keyframes rotating3d {
     from {
+        -o-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
         -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
     }
     to {
+        -o-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
         -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
     }
 }
 

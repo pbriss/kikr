@@ -40,19 +40,19 @@ def main(outfilename, isLocal):
     makeplot = False #True
 
     #pdb.set_trace()    
-    fout = open(outfilename, 'a+')
+    fout = open(outfilename, 'w+')
 
     print "serialopened"
     now = datetime.datetime.now()
     beginning_of_test = datetime.datetime.now()
     #gopro.main()
-    os.system("python gopro.py &")
+    #os.system("python gopro.py &")
 
 
 
     while True: 
         read_val = send(ser, "4")
-        time.sleep(3.5)
+        time.sleep(1)
         read_val = send(ser, "a")
         read_val = readserial(ser)
         latest_read = read_val        

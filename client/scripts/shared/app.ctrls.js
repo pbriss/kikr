@@ -49,7 +49,7 @@ angular.module('app.ctrls', [])
 
 		$scope.startRecord = function() {
 
-			if (true) {
+			if (!$scope.isProcessing) {
 
 				if (!$scope.isInitiated && !$scope.isRunning) {
 					$scope.isInitiated = true;
@@ -65,6 +65,7 @@ angular.module('app.ctrls', [])
 						$scope.isProcessing = true;
 						$http.get('api/processing').success(function (json) {
 							//$location.path('/events');
+							alert(json);
 						});
 					});
 
