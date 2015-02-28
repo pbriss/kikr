@@ -1,0 +1,115 @@
+.page-events {
+	// parent wrapper
+	.event-list-wrap {
+		position: relative;
+		overflow: hidden;
+
+		.title {
+            margin-top:20px;
+            margin-left:2px;
+			border-radius: @border-radius-small;
+			font-weight: 800;
+			color: #fff;
+			> strong {
+				padding: @padding-base-vertical @padding-base-horizontal;
+				display: inline-block;
+			}
+			&.now > strong {
+				background: @brand-primary;
+			}
+		}
+
+		ul > li {
+			position: relative;
+
+			.point {
+				.square(50px);
+				background: #fff;
+				border-radius: 50%;
+				.translate(-50%; 0);
+                top: 30px;
+				position: absolute;
+                text-align: center;
+                color:@brand-primary;
+                border: 2px solid @brand-primary;
+
+                .icon {
+                    line-height:48px;
+                    font-size:28px;
+                }
+			}
+
+			.group {
+                margin-left:80px;
+				margin-top: 30px;
+				margin-bottom: 30px;
+			}
+			.desc {
+                background-color: #fff;
+				position: relative;
+                border: 1px solid @gray-lighter;
+				padding: 12px 18px;
+
+                .video-thumbnail {
+                    position:relative;
+                    display: table;
+                    .square(100px);
+                }
+
+                .video-thumbnail:hover {
+                    cursor: pointer;
+                    transition:all 0.3s ease;
+                    border-radius: 50%;
+                    opacity:0.80;
+
+                    &:before {
+                        font-family: 'FontAwesome';
+                        content: "\f01d";
+                        position:absolute;
+                        left:30px;
+                        top:12px;
+                        font-size:50px;
+                        z-index:100;
+                        color:#fff;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                    }
+                }
+
+			}
+			// create arrows
+			.desc:before, .desc:after {
+				.square(14px);
+				top: 3.5em;
+				left: -6px;
+				position: absolute;
+				content: "";
+				.rotate(45deg);
+				background: #fff;
+			}
+			.desc:after {
+				border: 1px solid darken(@gray-lighter, 4%);
+				z-index: -1;
+				left: -7px;
+			}
+
+			.desc.desc-right:before {
+				right: -6px;
+				left: auto;
+			}
+			.desc.desc-right:after {
+				right: -7px;
+				left: auto;
+			}
+		}
+
+        ul > li {
+            &.ng-enter {
+                //z-index: 9999;
+                //.animation(1s zoomInDown ease-in)
+            }
+        }
+
+	}
+//#end
+}
