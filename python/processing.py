@@ -19,7 +19,11 @@ def main(islocal):
 
     #JumpLocation = int(re.findall('T=(\d+)', metaline)[0])
     JumpLocation = int(re.findall('(\d+)', metaline)[0])
-    startclip = JumpLocation - StartNegOffset
+    if JumpLocation < StartNegOffset: 
+        startclip = 0
+    else:
+        startclip = JumpLocation - StartNegOffset
+
     endclip = startclip + ClipLength
 
 

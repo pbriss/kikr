@@ -169,7 +169,8 @@ def main(infilename, outfilename):
     tydg = np.arange(0,len(diffg_y),1)
     tzdg = np.arange(0,len(diffg_z),1)
 
-
+    
+    getonlymax = True
 
     maxval = max([max(abs(diff_x)), max(abs(diff_y)), max(abs(diff_z))])
     factor = 0.6
@@ -222,17 +223,39 @@ def main(infilename, outfilename):
     #indsm_y_clean = subsampleclose(indsm_y, 5)
     #pdb.set_trace()
 
-    timearr_np = np.array(timearr)
-    timearr_indsm_y_clean = list(set(timearr_np[indsm_y[0]]))
     #timearr_np[indsm_y[0]].reshape(-1,)
+
+    diffm_x_max = max(diffm_x)
+    diffm_y_max = max(diffm_y)
+    diffm_z_max = max(diffm_z)
+    
+    magnmax = np.argmax([diffm_x_max, diffm_y_max, diffm_z_max])
+    
+    if magnmax == 0:
+        diffmax = indsm_x
+    elif magnmax == 1:
+        diffmax = indsm_y
+    elif magnmax == 2:
+        diffmax = indsm_z
+
+    timearr_np = np.array(timearr)    
+    if getonlymax:
+        #pdb.set_trace()        
+        maxidx = np.argmax(diffm_y)
+        timearr_indsm_y_clean = timearr_np[maxidx]
+        fout.write(str(timearr_indsm_y_clean) + "\n" )
+
+    else:
+        #timearr_indsm_y_clean = list(set(timearr_np[indsm_y[0]]))
+        timearr_indsm_y_clean = list(set(timearr_np[diffmax[0]]))
+
 
 
     #pdb.set_trace()
-    if 1: 
         #for x in numpy.nditer(indsm_y_clean):
         for x in timearr_indsm_y_clean:
             #print x
-        # Get index when it happened: 
+            # Get index when it happened: 
             #pdb.set_trace()
             #fout.write("T=" + str(x) +  " Jump" + "\n" )
             fout.write(str(x) + "\n" )
