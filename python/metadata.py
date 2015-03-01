@@ -232,7 +232,6 @@ def main(infilename, outfilename):
     diffm_x_max = max(diffm_x)
     diffm_y_max = max(diffm_y)
     diffm_z_max = max(diffm_z)
-    
     magnmax = np.argmax([diffm_x_max, diffm_y_max, diffm_z_max])
     
     if magnmax == 0:
@@ -241,6 +240,22 @@ def main(infilename, outfilename):
         diffmax = indsm_y
     elif magnmax == 2:
         diffmax = indsm_z
+
+    diffg_x_max = max(diffg_x)
+    diffg_y_max = max(diffg_y)
+    diffg_z_max = max(diffg_z)
+    diffg_xyz_max = [diffg_x_max, diffg_y_max, diffg_z_max]
+    diffg_x_min = min(diffg_x)
+    diffg_y_min = min(diffg_y)
+    diffg_z_min = min(diffg_z)
+    diffg_xyz_min = [diffg_x_min, diffg_y_min, diffg_z_min]
+    maggmax = np.argmax(diffg_xyz_max)
+
+    extreme_gyro =  abs(max(diffg_xyz_max)   - min(diffg_xyz_min))
+    
+    
+
+
 
     StartNegOffset = 3  # How many seconds before the jump
     ClipLength = 10  # in seconds
@@ -260,7 +275,11 @@ def main(infilename, outfilename):
 
 
         events = list()
-        events.append(Event(startclip, endclip))
+        move = "Jump"
+        if (extreme_gyro > 200):
+            move = "360"
+
+        events.append(Event(startclip, endclip, move))
         print json.dumps(events, default=lambda o: o.__dict__)
         
 
