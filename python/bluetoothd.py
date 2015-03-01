@@ -47,12 +47,7 @@ def main(outfilename, isLocal):
 
 
     print "serialopened"
-    now = datetime.datetime.now()
-    beginning_of_test = datetime.datetime.now()
 
-    fser = open('python/stateserial.txt', 'w+')
-    fser.write("1")
-    fser.close()
 
     #gopro.main()
     #os.system("python python/gopro.py &")
@@ -89,7 +84,17 @@ def main(outfilename, isLocal):
 
         if  '1' in statestr:
             if startlog == False:
+
+                # this is the beginning of test: 
+                now = datetime.datetime.now()
+                beginning_of_test = datetime.datetime.now()
+
+                fser = open('python/stateserial.txt', 'w+')
+                fser.write("1")
+                fser.close()
+                
                 fout = open(outfilename, 'w+')
+
 
             startlog = True
             read_val = send(ser, "4")
