@@ -46,7 +46,7 @@ def main(outfilename, isLocal):
     now = datetime.datetime.now()
     beginning_of_test = datetime.datetime.now()
     #gopro.main()
-    #os.system("python gopro.py &")
+    os.system("python python/gopro.py &")
 
 
 

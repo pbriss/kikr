@@ -217,7 +217,7 @@ def main(infilename, outfilename):
                     if nonunique != curv[0]:
                 #curelement_index = numpy.nonzero( indsg_z_clean  ==  nonunique )[0] 
                         indsg_z_clean = np.delete(indsg_z_clean,nonunique )
-                        print x
+                        #print x
 
     #indsm_y_clean = subsampleclose(indsm_y, 5)
     #pdb.set_trace()
@@ -231,7 +231,7 @@ def main(infilename, outfilename):
     if 1: 
         #for x in numpy.nditer(indsm_y_clean):
         for x in timearr_indsm_y_clean:
-            print x
+            #print x
         # Get index when it happened: 
             #pdb.set_trace()
             #fout.write("T=" + str(x) +  " Jump" + "\n" )
@@ -333,8 +333,8 @@ def indices(a, func):
 if __name__ == "__main__":
 
 
-    print 'Number of arguments:', len(sys.argv), 'arguments.'
-    print 'Argument List:', str(sys.argv)
+    #print 'Number of arguments:', len(sys.argv), 'arguments.'
+    #print 'Argument List:', str(sys.argv)
 
     val = ''
     if (len(sys.argv) > 3):

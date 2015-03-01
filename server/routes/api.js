@@ -26,7 +26,7 @@ exports.btstop = function(req, res) {
 		} else {
 
 			//Start metadata reading
-			var pyshell = new PythonShell('test.py', {mode: 'text'});
+			var pyshell = new PythonShell('metadata.py', {mode: 'text'});
 			pyshell.on('message', function (msg) {
 				fs.readFile('python/metadata.txt', function(err, data) {
 					if(err) {
