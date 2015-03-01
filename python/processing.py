@@ -44,9 +44,10 @@ def makevideoclip(startclip, endclip, fileout, islocalin):
     result = CompositeVideoClip([video])
     
     # Save and crop segment
-    result.write_videofile( fileout + '.mp4', audio=True)
+    result.write_videofile( fileout + '.mp4', audio=True, verbose=False)
 
 
+    print "DoneVideo"
 
 if __name__ == "__main__":
 

@@ -6,6 +6,8 @@ import pdb
 import sys
 import re
 import os
+import signal
+from subprocess import Popen
 from pylab import *
 
 
@@ -13,7 +15,7 @@ from pylab import *
 
 import datetime
 import time
-import gopro
+#import gopro
 
 #from time import time, sleep
 #import time, sleep
@@ -24,7 +26,9 @@ def main(outfilename, isLocal):
 
     #beginning_of_test = datetime.datetime.combine(now.date(), datetime.time(0))  
 
-
+    fser = open('python/stateserial.txt', 'w+')
+    fser.write("0")
+    fser.close()
 
     resport = False
     while (  resport == False):
@@ -45,8 +49,17 @@ def main(outfilename, isLocal):
     print "serialopened"
     now = datetime.datetime.now()
     beginning_of_test = datetime.datetime.now()
+
+
+    fser = open('python/stateserial.txt', 'w+')
+    fser.write("1")
+    fser.close()
+
     #gopro.main()
-    os.system("python python/gopro.py &")
+    #os.system("python python/gopro.py &")
+
+    #os.system("ffmpeg -y -i http://10.5.5.9:8080/live/amba.m3u8 -c:v copy -an python/videos/src/test.mp4 &")
+    #process = Popen("ffmpeg -y -i http://10.5.5.9:8080/live/amba.m3u8 -c:v copy -an python/videos/src/test.mp4", shell=True)
 
 
 
@@ -72,6 +85,8 @@ def main(outfilename, isLocal):
         if  statestr.find('0') != -1:
             ser.close()
             fout.close()
+            # os.kill(process.pid, signal.SIGTERM)
+
             break
 
         while read_val != None:

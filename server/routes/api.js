@@ -5,7 +5,10 @@ var notOpen = true;
 
 exports.btstart = function(req, res) {
 
-	fs.writeFile('python/state.txt', 1, function(err) {
+
+  fs.writeFile('python/stateserial.txt', 0);
+
+ 	fs.writeFile('python/state.txt', 1, function(err) {
 		if(err) {
 			console.log(err);
 		} else {
@@ -20,7 +23,9 @@ exports.btstart = function(req, res) {
 
 exports.btstop = function(req, res) {
 
-	fs.writeFile('python/state.txt', 0, function(err) {
+  fs.writeFile('python/stateserial.txt', 0);;
+
+  fs.writeFile('python/state.txt', 0, function(err) {
 		if(err) {
 			console.log(err);
 		} else {
@@ -31,12 +36,19 @@ exports.btstop = function(req, res) {
 				fs.readFile('python/metadata.txt', function(err, data) {
 					if(err) {
 						console.log(err);
+      
 					} else {
-						res.json(data);
+       console.log('get here btstop');
+       res.json(data);
+      
+       sleep.sleep(5)
+       //Start video processing
+       new PythonShell('processing.py', {mode: 'binary'});
+
 					}
 				});
-				//Start video processing
-				new PythonShell('processing.py', {mode: 'binary'});
+
+
 
 				pyshell.end(function (err) {
 					if (err) throw err;
