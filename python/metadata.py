@@ -9,6 +9,10 @@ import re
 import numpy
 from pylab import *
 
+import json
+from event import Event
+
+
 
 
 from time import time, sleep
@@ -238,12 +242,28 @@ def main(infilename, outfilename):
     elif magnmax == 2:
         diffmax = indsm_z
 
+    StartNegOffset = 3  # How many seconds before the jump
+    ClipLength = 10  # in seconds
+
     timearr_np = np.array(timearr)    
     if getonlymax:
         #pdb.set_trace()        
         maxidx = np.argmax(diffm_y)
         timearr_indsm_y_clean = timearr_np[maxidx]
         fout.write(str(timearr_indsm_y_clean) + "\n" )
+
+        if timearr_indsm_y_clean < StartNegOffset: 
+            startclip = 0
+        else: 
+            startclip = timearr_indsm_y_clean - StartNegOffset
+        endclip = timearr_indsm_y_clean - StartNegOffset + ClipLength
+
+
+        events = list()
+        events.append(Event(startclip, endclip))
+        print json.dumps(events, default=lambda o: o.__dict__)
+        
+
 
     else:
         #timearr_indsm_y_clean = list(set(timearr_np[indsm_y[0]]))
@@ -312,7 +332,7 @@ def main(infilename, outfilename):
         pdb.set_trace()
 
 
-    print "Done"
+    #print "Done"
 
 def subsampleclose(arr, distance):
     arr_clean = arr

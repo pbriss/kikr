@@ -54,39 +54,20 @@ angular.module('app.ctrls', [])
 
 				if (!$scope.isRunning) {
 					$scope.isRunning = true;
-					//$http.get('api/btstart').success(function () {
-					//
-					//});
+					$http.get('api/btstart').success(function () {
+					
+					});
 				}
 				else {
-					//$scope.isRunning = false;
-					//$scope.isProcessing = true;
-					//$http.get('api/btstop').success(function () {
-					//	$location.path('/events');
-					//});
+      $scope.isRunning = false;
+      $scope.isProcessing = true;
+					$http.get('api/btstop').success(function () {
+						$location.path('/events');
+					});
 
 
-					$scope.isRunning = false;
-					$scope.isProcessing = true;
-
-					$timeout(function(){
-						var move = {
-							start: 8, end: 16
-						};
-						move.start = (new Date).clearTime()
-						.addSeconds(move.start)
-						.toString('m:ss');
-
-						move.end = (new Date).clearTime()
-						.addSeconds(move.end)
-						.toString('m:ss');
-
-						$rs.events = [{
-							id: 2,
-							moves: [move]
-						}];
-						$location.path('/events').search({ isNewEvent: true });
-					}, 2000);
+      //$scope.isRunning = false;
+      //$scope.isProcessing = true;
 
 				}
 			}

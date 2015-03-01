@@ -30,19 +30,23 @@ exports.btstop = function(req, res) {
 		} else {
 
 			//Start metadata reading
-			var pyshell = new PythonShell('metadata.py', {mode: 'text'});
+			var pyshell = new PythonShell('metadata.py', {mode: 'JSON'});
 			pyshell.on('message', function (msg) {
 				fs.readFile('python/metadata.txt', function(err, data) {
 					if(err) {
-						console.log(err);
+       console.log(err);
       
 					} else {
+
 					   console.log('get here btstop');
-					   res.json(data);
+					   console.log(msg);
+					   res.json(msg);
 
 					   sleep.sleep(5);
 					   //Start video processing
 					   new PythonShell('processing.py', {mode: 'binary'});
+
+
 
 					}
 				});
