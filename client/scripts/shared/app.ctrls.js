@@ -1,9 +1,9 @@
 ;(function() {
-'use strict';
+	'use strict';
 
-angular.module('app.ctrls', [])
+	angular.module('app.ctrls', [])
 
-	// Root Controller
+		// Root Controller
 	.controller('AppCtrl', ['$rootScope', '$scope',  function($rs, $scope) {
 		$rs.events = [];
 
@@ -31,18 +31,18 @@ angular.module('app.ctrls', [])
 
 	}])
 
-	// Head Controller
+		// Head Controller
 	.controller('HeadCtrl', ['$scope', function($scope){
 		$scope.toggleSidebar = function() {
 			$scope.sidebarOpen = $scope.sidebarOpen ? false : true;
 		};
 	}])
 
-	// Foot Controller
+		// Foot Controller
 	.controller('FootCtrl', ['$scope', function($scope){
 	}])
 
-	// Start Controller
+		// Start Controller
 	.controller('StartCtrl', ['$rootScope', '$scope', '$http', '$location', '$timeout', function($rs, $scope, $http, $location, $timeout){
 
 		$scope.isRunning = false;
@@ -55,26 +55,40 @@ angular.module('app.ctrls', [])
 				if (!$scope.isRunning) {
 					$scope.isRunning = true;
 					$http.get('api/btstart').success(function () {
-					
+
 					});
 				}
 				else {
-      $scope.isRunning = false;
-      $scope.isProcessing = true;
-					$http.get('api/btstop').success(function () {
-						$location.path('/events');
+					$scope.isRunning = false;
+					$scope.isProcessing = true;
+					$http.get('api/btstop').success(function (json) {
+
+
+						var move = {
+							start: json[0].start, end: json[0].end
+						};
+						move.start = (new Date).clearTime()
+						.addSeconds(move.start)
+						.toString('m:ss');
+
+						move.end = (new Date).clearTime()
+						.addSeconds(move.end)
+						.toString('m:ss');
+
+						$rs.events = [{
+							id: 1,
+							moves: [move]
+						}];
+
+						$location.path('/events').search({ isNewEvent: true });
 					});
-
-
-      //$scope.isRunning = false;
-      //$scope.isProcessing = true;
 
 				}
 			}
 		};
 	}])
 
-	// Events Controller
+		// Events Controller
 	.controller('EventsCtrl', ['$rootScope', '$scope', '$routeParams', function($rs, $scope, $routeParams){
 		$scope.events = [
 			{
@@ -121,22 +135,23 @@ angular.module('app.ctrls', [])
 				competitors: [{name: 'yann'}, {name: 'alex'}]
 			}
 		];
-
-		var move = {
-			start: 8, end: 16
-		};
-		move.start = (new Date).clearTime()
-		.addSeconds(move.start)
-		.toString('m:ss');
-
-		move.end = (new Date).clearTime()
-		.addSeconds(move.end)
-		.toString('m:ss');
-
-		$rs.events = [{
-			id: 2,
-			moves: [move]
-		}];
+		//
+		//
+		//var move = {
+		//	start: 8, end: 16
+		//};
+		//move.start = (new Date).clearTime()
+		//.addSeconds(move.start)
+		//.toString('m:ss');
+		//
+		//move.end = (new Date).clearTime()
+		//.addSeconds(move.end)
+		//.toString('m:ss');
+		//
+		//$rs.events = [{
+		//	id: 2,
+		//	moves: [move]
+		//}];
 
 		if ($rs.events.length > 0) {
 			angular.forEach($rs.events, function (item) {
@@ -149,6 +164,10 @@ angular.module('app.ctrls', [])
 				});
 			});
 		}
+
+		$scope.toggleMoves = function(event) {
+			event.showMoves = !event.showMoves;
+		};
 	}])
 
 }());

@@ -3,7 +3,7 @@
 	<div class="page-wrap">
         <div class="event-list">
             <div class="row" ng-repeat="event in events">
-                <div class="event" ng-class="{'new' : event.isNew, 'active' : event.done}">
+                <div class="event" ng-class="{'new' : event.isNew, 'active' : event.done}" ng-click="toggleMoves(event); ">
                     <div class="col left event-badge">
                         <div class="badge">
                             <i class="icon icon-{{event.category | iconify}}"></i>
@@ -19,11 +19,21 @@
                                 <img ng-src="images/{{competitor.name}}.jpg">
                             </a>
                         </div>
-                        <div class="row" ng-repeat="move in event.moves">
+                        <div class="clearfix"></div>
+
+                        <div class="row" ng-repeat="move in event.moves" ng-show="event.showMoves" stop-event>
                             <div class="col-xs-12">
                                 <div class="move-info">
-                                    {{move.start}}
-                                    {{move.end}}
+                                    <label class="time label label-primary">{{move.start}} - {{move.end}}</label>
+                                    <a href="python/videos/segments/jump1.mp4">
+                                        <div class="video-thumbnail mt10">
+                                            <img src="python/videos/segments/jump1.png" />
+                                        </div>
+                                    </a>
+                                    <div class="share mt15">
+                                        <button type="button" class="btn btn-facebook btn-xs fa fa-facebook icon"></button>
+                                        <button type="button" class="btn btn-youtube btn-xs fa fa-youtube-play icon"></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
