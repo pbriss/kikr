@@ -13,7 +13,7 @@ exports.btstart = function(req, res) {
 			console.log(err);
 		} else {
 			//Start bluetooth reading
-			new PythonShell('bluetooth.py', {mode: 'binary'});
+			//new PythonShell('bluetooth.py', {mode: 'binary'});
 
 			res.json('Bluetooth & GoPro started!');
 		}
