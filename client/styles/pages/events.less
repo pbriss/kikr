@@ -1,115 +1,78 @@
 .page-events {
-	// parent wrapper
-	.event-list-wrap {
-		position: relative;
-		overflow: hidden;
+    @badge-idle: @brand-primary;
+    @text-idle: lighten(#000, 65%);
+	.event-list {
 
-		.title {
-            margin-top:20px;
-            margin-left:2px;
-			border-radius: @border-radius-small;
-			font-weight: 800;
-			color: #fff;
-			> strong {
-				padding: @padding-base-vertical @padding-base-horizontal;
-				display: inline-block;
-			}
-			&.now > strong {
-				background: @brand-primary;
-			}
-		}
+        .event {
 
-		ul > li {
-			position: relative;
+            .col {
+                padding: 15px 8px;
+            }
 
-			.point {
-				.square(50px);
-				background: #fff;
-				border-radius: 50%;
-				.translate(-50%; 0);
-                top: 30px;
-				position: absolute;
-                text-align: center;
-                color:@brand-primary;
-                border: 2px solid @brand-primary;
+            .event-badge {
+                width:20%;
 
-                .icon {
-                    line-height:48px;
-                    font-size:28px;
-                }
-			}
-
-			.group {
-                margin-left:80px;
-				margin-top: 30px;
-				margin-bottom: 30px;
-			}
-			.desc {
-                background-color: #fff;
-				position: relative;
-                border: 1px solid @gray-lighter;
-				padding: 12px 18px;
-
-                .video-thumbnail {
-                    position:relative;
-                    display: table;
-                    .square(100px);
-                }
-
-                .video-thumbnail:hover {
-                    cursor: pointer;
-                    transition:all 0.3s ease;
+                .badge {
+                    .square(50px);
+                    background: #fff;
                     border-radius: 50%;
-                    opacity:0.80;
+                    text-align: center;
+                    color: @badge-idle;
+                    border: 2px solid @badge-idle;
 
-                    &:before {
-                        font-family: 'FontAwesome';
-                        content: "\f01d";
-                        position:absolute;
-                        left:30px;
-                        top:12px;
-                        font-size:50px;
-                        z-index:100;
-                        color:#fff;
-                        -webkit-font-smoothing: antialiased;
-                        -moz-osx-font-smoothing: grayscale;
+                    .icon {
+                        line-height: 42px;
+                        font-size: 28px;
                     }
                 }
+            }
 
-			}
-			// create arrows
-			.desc:before, .desc:after {
-				.square(14px);
-				top: 3.5em;
-				left: -6px;
-				position: absolute;
-				content: "";
-				.rotate(45deg);
-				background: #fff;
-			}
-			.desc:after {
-				border: 1px solid darken(@gray-lighter, 4%);
-				z-index: -1;
-				left: -7px;
-			}
+            .event-info {
+                width:80%;
+                border-bottom:1px solid @gray-lighter;
+                p {
+                    margin-bottom: 0;
+                }
 
-			.desc.desc-right:before {
-				right: -6px;
-				left: auto;
-			}
-			.desc.desc-right:after {
-				right: -7px;
-				left: auto;
-			}
-		}
+                .title {
+                    font-size: 18px;
+                    color: @text-idle;
+                    .opacity(30);
+                }
 
-        ul > li {
-            &.ng-enter {
-                //z-index: 9999;
-                //.animation(1s zoomInDown ease-in)
+                .sub-title {
+                    font-size: 13px;
+                    color: @text-idle;
+                }
+            }
+
+            .user-profile {
+                margin-left:4px;
+                > img {
+                    border-radius: 50%;
+                    .square(25px);
+                }
             }
         }
 
+        .event.active {
+            .event-info {
+                .title {
+                    color:#000;
+                }
+            }
+
+            .badge {
+                color:#fff;
+                background-color: @brand-success;
+                border-color: @brand-success;
+
+            }
+        }
+
+        .event.new {
+            .animation(1.5s tada ease-in);
+        }
 	}
 //#end
 }

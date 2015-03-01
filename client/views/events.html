@@ -1,13 +1,36 @@
 <div class="page page-events clearfix" ng-controller="EventsCtrl">
 
 	<div class="page-wrap">
-		<div class="row">
-			<div class="col-md-12 event-list-wrap">
-                <div class="title now small text-uppercase"><strong>Start</strong></div>
-				<ul class="list-unstyled">
-				</ul>
-			</div>
-		</div>
+        <div class="event-list">
+            <div class="row" ng-repeat="event in events">
+                <div class="event" ng-class="{'new' : event.isNew, 'active' : event.done}">
+                    <div class="col left event-badge">
+                        <div class="badge">
+                            <i class="icon icon-{{event.category | iconify}}"></i>
+                        </div>
+                    </div>
+                    <div class="col left event-info">
+                        <div class="left">
+                            <p class="title">{{event.name}}</p>
+                            <p class="sub-title">{{event.category}}</p>
+                        </div>
+                        <div class="right">
+                            <a href class="user-profile" ng-repeat="competitor in event.competitors">
+                                <img ng-src="images/{{competitor.name}}.jpg">
+                            </a>
+                        </div>
+                        <div class="row" ng-repeat="move in event.moves">
+                            <div class="col-xs-12">
+                                <div class="move-info">
+                                    {{move.start}}
+                                    {{move.end}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
 	<!-- #end page-wrap -->
 </div>

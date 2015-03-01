@@ -1,8 +1,4 @@
 .page-start {
-    position: absolute;
-    top: 60px;
-    bottom:0;
-    width: 100%;
 
     .start-button {
         position: absolute;
@@ -10,97 +6,67 @@
         left: 50%;
         .translate(-50%, -50%);
         .border-radius(50%);
-        .square(200px);
-        background: transparent;
-        border: 20px solid #fff;
+        .square(180px);
+        background-color: @brand-success;
         text-align:center;
+        transition: all 0.3s ease;
 
-        span {
-            &:before {
-                content: "Start";
-            }
+        div.placeholder {
             position:absolute;
             top: 50%;
             left: 50%;
             .translate(-50%, -50%);
             color: #fff;
-            font-size:26px;
+            font-size:32px;
             z-index:10;
-        }
 
-        .inner {
-            transition: all 0.3s ease;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            .translate(-50%, -50%);
-            .border-radius(50%);
-            background-color: #e74c3c;
-            .square(160px);
-            text-align: center;
-        }
-    }
-
-    .start-button.init {
-
-        span {
-            &:before {
-                font-family: 'FontAwesome';
-                content: "\f1eb";
-                font-size:80px;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-
-                .animation(largePulse);
-                .animation-timing-function(linear);
-                .animation-duration(1.5s);
-                .animation-iteration-count(infinite);
+            div.inner {
+                &:before {
+                    content: "Go";
+                }
+                width:100%;
+                height:100%;
             }
-        }
-
-        .inner {
-            background-color: @brand-success;
         }
     }
 
     .start-button.active {
+        .border-radius(10%);
+        .square(140px);
+        .animation(redPulse);
+        .animation-duration(2s);
+        .animation-iteration-count(infinite);
 
-        span {
-            &:before {
-                content: "Stop";
+        div.placeholder {
+            div.inner {
+                &:before {
+                    content: "Stop";
+                }
+                width:100%;
+                height:100%;
             }
-        }
-
-        .inner {
-            transition: all 0.3s ease;
-            .border-radius(10%);
-            .square(110px);
-            .animation(redPulse);
-            .animation-duration(2s);
-            .animation-iteration-count(infinite);
         }
     }
 
     .start-button.processing {
+        cursor:default;
+        background-color: @brand-primary;
 
-        span {
-            &:before {
-                font-family: 'icomoon';
-                content: "\e603";
-                font-size:80px;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-
+        div.placeholder {
+            div.inner {
                 .animation(rotating3d);
                 .animation-timing-function(linear);
                 .animation-duration(1.5s);
                 .animation-iteration-count(infinite);
-            }
-        }
+                .transform-origin(50% 50%);
 
-        .inner {
-            background-color: @brand-primary;
-            cursor:default;
+                &:before {
+                    font-family: 'icomoon';
+                    font-size: 90px;
+                    -webkit-font-smoothing: antialiased;
+                    content: "\e603";
+                }
+            }
         }
     }
 //#end
@@ -147,6 +113,24 @@
 }
 
 @-webkit-keyframes rotating {
+
+    from {
+        -moz-transform:rotate(0);
+        -ms-transform:rotate(0);
+        -o-transform:rotate(0);
+        -webkit-transform:rotate(0);
+        transform:rotate(0);
+    }
+    to {
+        -moz-transform:rotate(360deg);
+        -ms-transform:rotate(360deg);
+        -o-transform:rotate(360deg);
+        -webkit-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes rotating {
 
     from {
         -moz-transform:rotate(0);

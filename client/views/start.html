@@ -1,7 +1,8 @@
 <div class="page page-start clearfix" ng-controller="StartCtrl">
     <div class="start-button" ng-click="startRecord()"
-         ng-class="{'init': isInitiated, 'active': isRunning, 'processing': isProcessing}">
-        <span></span>
-        <div class="inner"></div>
+         ng-class="{'active': isRunning, 'processing': isProcessing}">
+        <div class="placeholder">
+            <div class="inner"></div>
+        </div>
     </div>
 </div>

@@ -12,7 +12,8 @@
 
 		/* Custom Modules */
 		"app.ctrls",
-		"app.directives"
+		"app.directives",
+		"app.filters"
 
 	])
 
@@ -38,13 +39,17 @@
 		});
 
 		$routeProvider
-			.when("/", {redirectTo: "/start"})
+			.when("/", {redirectTo: "/events"})
 			.when("/404", {templateUrl: "views/404.html"})
 			.otherwise({redirectTo: "/404"});
 		
 
 	}])
     .run(function(){
+
+		$(function() {
+			FastClick.attach(document.body);
+		});
     });
 }());
 
