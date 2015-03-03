@@ -10,12 +10,15 @@ import numpy
 from pylab import *
 
 import json
+import shutil
+#import time
 from event import Event
 
 
 
 
-from time import time, sleep
+#from time import time, sleep
+import time
 
 
 def main(infilename, outfilename):
@@ -282,6 +285,7 @@ def main(infilename, outfilename):
         events.append(Event(startclip, endclip, move))
         print json.dumps(events, default=lambda o: o.__dict__)
         
+        return timearr_indsm_y_clean
 
 
     else:
@@ -421,5 +425,15 @@ if __name__ == "__main__":
     if len(sys.argv) > 2:
         outfilename = sys.argv[2]
 
-    main(infilename, outfilename)
+    try:
+        detoffset = main(infilename, outfilename)
+
+    # Now copy the file for logging purposes: 
+        #pdb.set_trace()
+        now_timestamp = time.strftime("%Y_%m_%d_%H_%M_%S", time.gmtime())
+        bu_filename = infilename.replace(".txt","_" + now_timestamp + "_D" + str(detoffset) +  ".txt")
+        shutil.copyfile(infilename, bu_filename)
+
+    except:
+        print "Errors in main metadata.py"
 

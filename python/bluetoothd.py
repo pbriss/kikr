@@ -72,8 +72,17 @@ def main(outfilename, isLocal):
         # f = open('state.txt', 'r')
         #if f.readline() == "0":
         if  '2' in statestr:
-            ser.close()
-            fout.close()
+            try:
+                ser.close()
+            except:
+                print "Port can't close"
+
+            try:
+                fout.close()
+            except:
+                print "File 9dofout.txt is not opened"
+
+
             # os.kill(process.pid, signal.SIGTERM)
             break
 

@@ -31,7 +31,7 @@ exports.btstop = function(req, res) {
 			//Start metadata reading
 			var pyshell = new PythonShell('metadata.py', {mode: 'json'});
 			pyshell.on('message', function (msg) {
-				fs.readFile('python/metadata.txt', function(err, data) {
+   fs.readFile('python/metadata.txt',{encoding: 'utf-8'}, function(err, data) {
 					if(err) {
        					console.log(err);
 					}
@@ -39,7 +39,9 @@ exports.btstop = function(req, res) {
 
 						console.log('get here btstop');
 						console.log(msg);
+      console.log('Detected move at ' + data);
 
+      
 						res.json(msg);
 
 						sleep.sleep(5);
