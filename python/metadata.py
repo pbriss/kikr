@@ -21,10 +21,10 @@ from event import Event
 import time
 
 
-def main(infilename, outfilename):
+def main(infilename, outfilename, makeplot):
 
     i = 'a'
-    makeplot = False
+    #makeplot = False
 
     if makeplot:
         ion()
@@ -260,7 +260,7 @@ def main(infilename, outfilename):
 
 
 
-    StartNegOffset = 3  # How many seconds before the jump
+    StartNegOffset = 4  # How many seconds before the jump
     ClipLength = 10  # in seconds
 
     timearr_np = np.array(timearr)    
@@ -285,7 +285,6 @@ def main(infilename, outfilename):
         events.append(Event(startclip, endclip, move))
         print json.dumps(events, default=lambda o: o.__dict__)
         
-        return timearr_indsm_y_clean
 
 
     else:
@@ -348,11 +347,14 @@ def main(infilename, outfilename):
         plot(txdg, diffg_x, tydg, diffg_y, tzdg, diffg_z)
         draw() # update the plot
 
+
+        if makeplot:
+            pdb.set_trace()
+
+    return timearr_indsm_y_clean
         
 
 # end        
-    if makeplot:
-        pdb.set_trace()
 
 
     #print "Done"
@@ -402,9 +404,16 @@ if __name__ == "__main__":
     #print 'Number of arguments:', len(sys.argv), 'arguments.'
     #print 'Argument List:', str(sys.argv)
 
+    makeplot = False
+    if (len(sys.argv) > 1):
+        makeplotstr = sys.argv[1]
+        if '1' in makeplotstr:
+            makeplot = True
+
+
     val = ''
-    if (len(sys.argv) > 3):
-        val = sys.argv[3]
+    if (len(sys.argv) > 4):
+        val = sys.argv[4]
 
 
     isLocal = False
@@ -420,13 +429,14 @@ if __name__ == "__main__":
 
     #pdb.set_trace()
 
-    if len(sys.argv) > 1:
-        infilename = sys.argv[1]
     if len(sys.argv) > 2:
-        outfilename = sys.argv[2]
+        infilename = sys.argv[2]
+    if len(sys.argv) > 3:
+        outfilename = sys.argv[3]
 
     try:
-        detoffset = main(infilename, outfilename)
+        
+        detoffset = main(infilename, outfilename, makeplot)
 
     # Now copy the file for logging purposes: 
         #pdb.set_trace()
