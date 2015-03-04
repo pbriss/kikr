@@ -28,30 +28,27 @@
 
             .move-congrats {
                 color:#fff;
-                font-family: 'bira';
-                font-size: 40px;
+                font-size: 32px;
             }
 
             .move-badge {
                 margin: 10px 0;
                 display:inline-block;
-
-                .animation(1.8s tada ease-in);
                 color:#fff;
-                background: transparent;
-                .square(120px);
+                background: @brand-success;
+                .square(100px);
                 border-radius: 50%;
                 text-align: center;
-                border: 2px solid #fff;
+                border: 2px solid @brand-success;
 
                 .icon {
-                    line-height: 120px;
-                    font-size: 80px;
+                    line-height: 100px;
+                    font-size: 60px;
                 }
             }
 
             .move-text {
-                position:relative;
+                .animation(2s tada ease-in);
                 .title {
                     font-size: 24px;
                     margin-bottom:0;

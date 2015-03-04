@@ -9,11 +9,15 @@ from moviepy.editor import *
 
 def main(islocal):
     #get the metadata.txt file :
+
     if (islocal):
         f = open('metadata.txt', 'r')
     else:
         f = open('python/metadata.txt', 'r')
     metaline = f.readline()
+
+    if (hasNumbers(metaline) == False):
+        metaline = '0'
 
     StartNegOffset = 3  # How many seconds before the jump
     ClipLength = 10  # in seconds
@@ -34,6 +38,9 @@ def main(islocal):
         makevideoclip(startclip, endclip, 'python/videos/segments/jump1', islocal)
 
 
+
+def hasNumbers(inputString):
+    return any(char.isdigit() for char in inputString)
 
 def makevideoclip(startclip, endclip, fileout, islocalin):
 
@@ -64,5 +71,8 @@ if __name__ == "__main__":
     if val == 'local':
         islocal =	True
 
+    try:
+        main(islocal)
+    except:
+        print "Error video"
 
-    main(islocal)

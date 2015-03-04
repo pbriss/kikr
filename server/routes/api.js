@@ -1,6 +1,6 @@
 var PythonShell = require('python-shell');
 var fs = require('fs');
-var sleep = require('sleep');
+//var sleep = require('sleep');
 
 exports.btstart = function(req, res) {
 
@@ -44,7 +44,7 @@ exports.btstop = function(req, res) {
       
 						res.json(msg);
 
-						sleep.sleep(5);
+						//sleep.sleep(5);
 
 						//Start video processing
 						new PythonShell('processing.py', {mode: 'binary'});

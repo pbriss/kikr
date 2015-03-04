@@ -35,7 +35,7 @@
 			$scope.safeApply(function() {
 				$location.path('/events');
 			});
-		}, 5000);
+		}, 2000);
 	}])
 		// Head Controller
 	.controller('HeadCtrl', ['$scope', '$location', function($scope, $location){
@@ -60,43 +60,44 @@
 
 				if (!$scope.isRunning) {
 					$scope.isRunning = true;
-					$scope.isRunning = true;
-					$http.get('api/btstart').success(function () {
-
-					});
+					//$scope.isRunning = true;
+					//$http.get('api/btstart').success(function () {
+					//
+					//});
 				}
 				else {
 					$scope.isRunning = false;
 					$scope.isProcessing = true;
-					$http.get('api/btstop').success(function (json) {
 
+					setTimeout(function() {
+						$scope.safeApply(function() {
+							$scope.isProcessing = false;
 
-						var move = {
-							start: json[0].start, end: json[0].end
-							//start: 10, end: 20
-						};
-						move.start = (new Date).clearTime()
-						.addSeconds(move.start)
-						.toString('m:ss');
+							//$http.get('api/btstop').success(function (json) {
 
-						move.end = (new Date).clearTime()
-						.addSeconds(move.end)
-						.toString('m:ss');
+							var move = {
+								//start: json[0].start, end: json[0].end
+								start: 10, end: 20
+							};
+							move.start = (new Date).clearTime()
+							.addSeconds(move.start)
+							.toString('m:ss');
 
-						$rs.completedEvents = [{
-							id: 1,
-							category: 'Spin',
-							name: '180°',
-							moves: [move]
-						}];
+							move.end = (new Date).clearTime()
+							.addSeconds(move.end)
+							.toString('m:ss');
 
-						setTimeout(function() {
-							$scope.safeApply(function() {
-								$location.path('/success');
-							});
-						}, 2000);
-					});
+							$rs.completedEvents = [{
+								id: 1,
+								category: 'Spin',
+								name: '180°',
+								moves: [move]
+							}];
 
+							$location.path('/success');
+						});
+					//});
+					}, 2000);
 				}
 			}
 		};
@@ -104,27 +105,6 @@
 
 		// Events Controller
 	.controller('SuccessCtrl', ['$rootScope', '$scope', '$location', function($rs, $scope, $location) {
-
-		//
-		//var move = {
-		//	//start: json[0].start, end: json[0].end
-		//	start: 10, end: 20
-		//};
-		//move.start = (new Date).clearTime()
-		//.addSeconds(move.start)
-		//.toString('m:ss');
-		//
-		//move.end = (new Date).clearTime()
-		//.addSeconds(move.end)
-		//.toString('m:ss');
-		//
-		//$rs.completedEvents = [{
-		//	id: 1,
-		//	category: 'Spin',
-		//	name: '180°',
-		//	moves: [move]
-		//}];
-
 
 		var completedEvent = $rs.completedEvents[0];
 		$scope.event = completedEvent;

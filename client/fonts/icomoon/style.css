@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?j3r2pb');
-	src:url('fonts/icomoon.eot?#iefixj3r2pb') format('embedded-opentype'),
-		url('fonts/icomoon.svg?j3r2pb#icomoon') format('svg'),
-		url('fonts/icomoon.woff?j3r2pb') format('woff'),
-		url('fonts/icomoon.ttf?j3r2pb') format('truetype');
+	src:url('fonts/icomoon.eot?-ghbhxn');
+	src:url('fonts/icomoon.eot?#iefix-ghbhxn') format('embedded-opentype'),
+		url('fonts/icomoon.svg?-ghbhxn#icomoon') format('svg'),
+		url('fonts/icomoon.woff?-ghbhxn') format('woff'),
+		url('fonts/icomoon.ttf?-ghbhxn') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -21,6 +21,10 @@
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-kikr-logo:before {
+	content: "\e604";
 }
 
 .icon-snowboarder:before {

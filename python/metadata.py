@@ -256,14 +256,19 @@ def main(infilename, outfilename, makeplot):
 
     extreme_gyro =  abs(max(diffg_xyz_max)   - min(diffg_xyz_min))
     
-    
-
 
 
     StartNegOffset = 4  # How many seconds before the jump
     ClipLength = 10  # in seconds
 
     timearr_np = np.array(timearr)    
+
+    # Getting the index of highest gyro: 
+    maxidx = np.argmax(diffg_xyz_max)
+    extreme_gyro_idx = timearr_np[maxidx]
+
+
+
     if getonlymax:
         #pdb.set_trace()        
         maxidx = np.argmax(diffm_y)
@@ -276,13 +281,15 @@ def main(infilename, outfilename, makeplot):
             startclip = timearr_indsm_y_clean - StartNegOffset
         endclip = timearr_indsm_y_clean - StartNegOffset + ClipLength
 
+        delta_xgyro = abs(timearr_indsm_y_clean - extreme_gyro_idx)
 
         events = list()
         move = "Jump"
         if (extreme_gyro > 200):
-            move = "360"
+            if (delta_xgyro > 3):
+                move = "180"
 
-        events.append(Event(startclip, endclip, move))
+        events.append(Event(startclip, endclip, move, maxidx))
         print json.dumps(events, default=lambda o: o.__dict__)
         
 
@@ -351,7 +358,7 @@ def main(infilename, outfilename, makeplot):
         if makeplot:
             pdb.set_trace()
 
-    return timearr_indsm_y_clean
+    return [timearr_indsm_y_clean, maxidx]
         
 
 # end        
@@ -436,7 +443,7 @@ if __name__ == "__main__":
 
     try:
         
-        detoffset = main(infilename, outfilename, makeplot)
+        [detoffset, maxidx] = main(infilename, outfilename, makeplot)
 
     # Now copy the file for logging purposes: 
         #pdb.set_trace()
@@ -445,5 +452,8 @@ if __name__ == "__main__":
         shutil.copyfile(infilename, bu_filename)
 
     except:
-        print "Errors in main metadata.py"
+        events = list()
+        events.append(Event(0, 10, "180", -1))
+        print json.dumps(events, default=lambda o: o.__dict__)
+
 
