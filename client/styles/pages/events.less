@@ -1,7 +1,11 @@
 .page-events {
     @badge-idle: @brand-primary;
+    @badge-idle: #fff;
     @text-idle: lighten(#000, 65%);
+    @text-idle: #fff;
+
 	.event-list {
+
 
         .event {
 
@@ -13,8 +17,8 @@
                 width:20%;
 
                 .badge {
+                    background-color:transparent;
                     .square(50px);
-                    background: #fff;
                     border-radius: 50%;
                     text-align: center;
                     color: @badge-idle;
@@ -29,7 +33,7 @@
 
             .event-info {
                 width:80%;
-                border-bottom:1px solid @gray-lighter;
+                border-bottom:1px solid #fff;
                 p {
                     margin-bottom: 0;
                 }
@@ -61,25 +65,12 @@
 
                     }
 
-//                    .video-thumbnail:hover {
-//                        cursor: pointer;
-//                        transition:all 0.3s ease;
-//                        border-radius: 50%;
-//                        opacity:0.80;
-//
-//                        &:before {
-//                            font-family: 'FontAwesome';
-//                            content: "\f01d";
-//                            position:absolute;
-//                            left:30px;
-//                            top:12px;
-//                            font-size:50px;
-//                            z-index:100;
-//                            color:#fff;
-//                            -webkit-font-smoothing: antialiased;
-//                            -moz-osx-font-smoothing: grayscale;
-//                        }
-//                    }
+                    .share {
+                        button {
+                            .border-radius(50%);
+                            border:2px solid #fff;
+                        }
+                    }
 
                 }
             }
@@ -88,6 +79,7 @@
                 margin-left:4px;
                 > img {
                     border-radius: 50%;
+                    border: 2px solid #fff;
                     .square(25px);
                 }
             }
@@ -96,7 +88,6 @@
         .event.active {
             .event-info {
                 .title {
-                    color:#000;
                 }
             }
 
@@ -110,6 +101,11 @@
 
         .event.new {
             .animation(1.5s tada ease-in);
+        }
+
+
+        .row:last-child .event-info {
+            border-bottom: 0;
         }
 	}
 //#end

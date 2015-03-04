@@ -1,4 +1,16 @@
 .page-start {
+    position:absolute;
+    top:0;
+    bottom:@site-foot-height;
+    right:0;
+    left:0;
+    z-index:2;
+
+    background-image: url('../images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-attachment: fixed;
 
     .start-button {
         position: absolute;
@@ -6,10 +18,11 @@
         left: 50%;
         .translate(-50%, -50%);
         .border-radius(50%);
-        .square(180px);
-        background-color: @brand-success;
+        .square(220px);
+        background-color: @brand-primary;
         text-align:center;
         transition: all 0.3s ease;
+        border: 10px solid #fff;
 
         div.placeholder {
             position:absolute;
@@ -17,12 +30,13 @@
             left: 50%;
             .translate(-50%, -50%);
             color: #fff;
-            font-size:32px;
+            font-size:26px;
             z-index:10;
+            width:100%;
 
             div.inner {
                 &:before {
-                    content: "Go";
+                    content: "Start Run";
                 }
                 width:100%;
                 height:100%;
@@ -32,7 +46,7 @@
 
     .start-button.active {
         .border-radius(10%);
-        .square(140px);
+        .square(180px);
         .animation(redPulse);
         .animation-duration(2s);
         .animation-iteration-count(infinite);
@@ -40,7 +54,7 @@
         div.placeholder {
             div.inner {
                 &:before {
-                    content: "Stop";
+                    content: "End Run";
                 }
                 width:100%;
                 height:100%;
@@ -109,41 +123,5 @@
         -moz-transform: rotateY(180deg);
         -webkit-transform: rotateY(180deg);
         transform: rotateY(180deg);
-    }
-}
-
-@-webkit-keyframes rotating {
-
-    from {
-        -moz-transform:rotate(0);
-        -ms-transform:rotate(0);
-        -o-transform:rotate(0);
-        -webkit-transform:rotate(0);
-        transform:rotate(0);
-    }
-    to {
-        -moz-transform:rotate(360deg);
-        -ms-transform:rotate(360deg);
-        -o-transform:rotate(360deg);
-        -webkit-transform:rotate(360deg);
-        transform:rotate(360deg);
-    }
-}
-
-@keyframes rotating {
-
-    from {
-        -moz-transform:rotate(0);
-        -ms-transform:rotate(0);
-        -o-transform:rotate(0);
-        -webkit-transform:rotate(0);
-        transform:rotate(0);
-    }
-    to {
-        -moz-transform:rotate(360deg);
-        -ms-transform:rotate(360deg);
-        -o-transform:rotate(360deg);
-        -webkit-transform:rotate(360deg);
-        transform:rotate(360deg);
     }
 }

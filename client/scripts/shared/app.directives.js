@@ -28,9 +28,7 @@ angular.module("app.directives", [])
 			});
 		}
 	};
-});
-
-
+})
 
 
 }());
