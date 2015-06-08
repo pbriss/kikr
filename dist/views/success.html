@@ -1,0 +1,20 @@
+<div class="page page-success clearfix" ng-controller="SuccessCtrl">
+    <div class="page-wrap">
+        <div class="inner">
+            <p class="move-congrats">Congratulations!</p>
+            <div class="move-badge">
+                <i class="icon icon-{{event.category | iconify}}"></i>
+            </div>
+            <div class="move-text">
+                <p class="title">{{event.name}} {{event.category}} completed</p>
+            </div>
+            <div class="clearfix"></div>
+            <div class="btn btn-primary mr10" ng-click="goToPlay()">
+                <i class="fa fa-play-circle"></i> Another run
+            </div>
+            <div class="btn btn-primary ml10" ng-click="goToList()">
+                <i class="fa fa-arrow-right"></i> Move list
+            </div>
+        </div>
+    </div>
+</div>

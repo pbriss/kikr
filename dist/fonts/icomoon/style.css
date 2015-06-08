@@ -1,0 +1,45 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?-ghbhxn');
+	src:url('fonts/icomoon.eot?#iefix-ghbhxn') format('embedded-opentype'),
+		url('fonts/icomoon.svg?-ghbhxn#icomoon') format('svg'),
+		url('fonts/icomoon.woff?-ghbhxn') format('woff'),
+		url('fonts/icomoon.ttf?-ghbhxn') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-kikr-logo:before {
+	content: "\e604";
+}
+
+.icon-snowboarder:before {
+	content: "\e603";
+}
+
+.icon-flip:before {
+	content: "\e600";
+}
+
+.icon-spin:before {
+	content: "\e602";
+}
+
+.icon-straight-air:before {
+	content: "\e601";
+}
+
