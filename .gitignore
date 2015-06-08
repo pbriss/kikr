@@ -5,3 +5,5 @@ npm-debug.log
 /.idea
 /*.env
 /python/.idea
+python/event.pyc
+python/gopro.pyc
